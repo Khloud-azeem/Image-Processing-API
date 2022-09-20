@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use("/", routes);
 
-app.listen(PORT, () => {
+app.listen(PORT, (): void => {
   console.log("Server listening on PORT", PORT);
 });
 

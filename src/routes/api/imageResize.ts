@@ -40,11 +40,11 @@ router.get("/", async (req: express.Request, res: express.Response) => {
     //check if img is in thumbnails
     const isImgThumb = fs.existsSync(thumbImgPath);
     if (isImgThumb) {
-      return res.sendFile(thumbImgPath);
+      return res.status(200).sendFile(thumbImgPath);
     } else {
       //resize image using sharp
       await sharpEditor(imgPath, thumbImgPath, imgWidth, imgHeight);
-      return res.sendFile(thumbImgPath);
+      return res.status(200).sendFile(thumbImgPath);
     }
   } catch (err) {
     return res.status(500).send("Internal server error!");
