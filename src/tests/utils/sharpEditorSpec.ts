@@ -25,5 +25,6 @@ describe("test sharpEditor() function", () => {
   });
   afterAll(() => {
     fs.unlinkSync(outputImgPath);
+    fs.unlinkSync("wrong_path");
   });
 });

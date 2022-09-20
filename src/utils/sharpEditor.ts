@@ -6,7 +6,7 @@ const sharpEditor = async function (
   imgWidth: string,
   imgHeight: string
 ): Promise<void> {
-  sharp(inputImgPath)
+  await sharp(inputImgPath)
     .resize(parseInt(imgWidth), parseInt(imgHeight))
     .toFile(outputImgPath)
     .then((_) => {
