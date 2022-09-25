@@ -25,10 +25,16 @@ router.get("/", async (req: express.Request, res: express.Response) => {
   }
 
   try {
+    //create thumbnails folder
+    const thumbDir = path.join(__dirname, "../../../thumbnails");
+    if (!fs.existsSync(thumbDir)) {
+      fs.mkdirSync(thumbDir);
+    }
     //image path in images & thumbnails folders
-    const imgPath = path.resolve(`./images/${fileName}.jpg`);
-    const thumbImgPath = path.resolve(
-      `./thumbnails/${fileName}_${imgWidth}_${imgHeight}.jpeg`
+    const imgPath = path.join(__dirname, `../../../images/${fileName}`);
+    const thumbImgPath = path.join(
+      thumbDir,
+      `/${fileName}_${imgWidth}_${imgHeight}.jpeg`
     );
 
     //check for valid filename
@@ -47,6 +53,7 @@ router.get("/", async (req: express.Request, res: express.Response) => {
       return res.status(200).sendFile(thumbImgPath);
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).send("Internal server error!");
   }
 });
