@@ -9,15 +9,12 @@ describe("test /imageResize endpoint", () => {
   const fileName = "fjord.jpg";
   const height = 130;
   const width = 150;
-  // const outputImgPath = path.resolve(
-  //   `./thumbnails/${fileName}_${width}_${height}.jpeg`
-  // );
+
   const thumbDir = path.join(__dirname, "../../../../thumbnails");
   const outputImgPath = path.join(
     thumbDir,
     `/${fileName}_${width}_${height}.jpeg`
   );
-  console.log(outputImgPath);
 
   it("should returns 200 status code for correct params values", async () => {
     const response = await request.get(
